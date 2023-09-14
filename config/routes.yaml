@@ -1,3 +1,55 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+Homepage:
+    path: /
+    controller: "App/Controller/HomeController::index"
+
+Offer_show:
+    path: /offer-{id}
+    controller: "App/Controller/OfferController::index"
+    requirements:
+        id: '\d+'
+
+Offer_add:
+    path: /offer_add
+    controller: "App/Controller/OfferController::edit"
+
+offer_edit:
+    path: /offer_edit/{id}
+    controller: "App/Controller/OfferController::edit"
+    requirements:
+        id: '\d+'
+
+offer_remove:
+    path: /offer_remove/{id}
+    controller: "App/Controller/OfferController::remove"
+    requirements:
+        id: '\d+'
+
+Consultant_show:
+    path: /{id}
+    controller: "App/Controller/ConsultantController::index"
+    requirements:
+        id: '\d+'
+
+Consultant_add:
+    path: /add
+    controller: "App/Controller/ConsultantController::edit"
+
+Consultant_edit:
+    path: /edit/{id}
+    controller: "App/Controller/ConsultantController::remove"
+    requirements:
+        id: '\d+'
+
+Consultant_remove:
+    path: /remove/{id}
+    controller: "App/Controller/ConsultantController::edit"
+    requirements:
+        id: '\d+'
+
+app_register:
+    path: /register
+    controller: "App:Controller/RegistrationController::register"

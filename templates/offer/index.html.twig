@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ offer.title }} {% endblock %}
+
+{% block content %}
+
+    {# Titre de la page #}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ offer.title }}</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <p>
+            {{ offer.address|nl2br }}
+        </p>
+        <p>
+            {{ offer.description|nl2br }}
+        </p>
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
