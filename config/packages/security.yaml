@@ -7,16 +7,27 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Candidat
+                class: App\Entity\Admin
                 property: email
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
+        # used to reload user from session & other features (e.g. switch_user)
+        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
+        secured_area:
+            # ...
+            form_login:
+                # ...
+                enable_csrf: true
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            #form_login:
+            # "app_login" is the name of the route created previously
+            # login_path: form_login
+            #check_path: form_login
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\LoginAuthentificatorAuthenticator
@@ -34,9 +45,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/(Login|Regostrer), roles: IS_AUTHENTIFICATED_ANONYMOUSLY }
-        # - { path: ^/, roles: IS_AUTHENTIFICATED_FULLY }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/(Login|Registrer), roles: PUBLIC_ACCESS  }
+         - { path: ^/, roles: PUBLIC_ACCESS  }
+         - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

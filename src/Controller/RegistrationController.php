@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Recruiter;
-use App\Form\RegistrationFormType;
+use App\Entity\User;
+use App\Form\Type\RegistrationFormType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -28,7 +28,8 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $user = new Recruiter();
+        
+        $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -40,6 +41,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+
+            $user->setRoles([$request->request->all()['registration_form']['role']]);
 
             $entityManager->persist($user);
             $entityManager->flush();

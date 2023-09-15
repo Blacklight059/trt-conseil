@@ -45,7 +45,7 @@ class OfferController extends AbstractController
 
     #[Route('/offer_add', name: 'new')]
     #[Route('/offer_edit/{id}', name: 'edit')]
-    public function edit(EntityManagerInterface $entityManager, OfferRepository $offerRepository, Request $request, int $id=null): Response
+    public function edit(EntityManagerInterface $entityManager, OfferRepository $offerRepository, Offer $offer, Request $request, int $id=null): Response
     {
 
         // Si un identifiant est présent dans l'url alors il s'agit d'une modification
@@ -61,7 +61,7 @@ class OfferController extends AbstractController
             $offer = new Offer();         
         }
         $form = $this->createForm(OfferType::class, $offer);
-        $offer = $form->getData();
+            $offer = $form->getData();
 
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
